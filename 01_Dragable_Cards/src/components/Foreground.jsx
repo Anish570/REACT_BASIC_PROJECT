@@ -37,7 +37,7 @@ function Foreground() {
         }
     ];
     return (
-        <div ref={ref} className='fixed top-0 left-0 bg-slate-800/200 z-[3] w-full h-full flex flex-wrap'> 
+        <div ref={ref} className='fixed top-0 left-0 bg-slate-800/200 z-[3] w-full h-full flex flex-wrap gap-10'> 
             {
                 data.map((item, index) => (
                     <Card refrence={ref} data={item} />
