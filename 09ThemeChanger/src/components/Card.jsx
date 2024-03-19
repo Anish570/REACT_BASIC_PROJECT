@@ -3,7 +3,7 @@ export default function Card() {
     return (
         <div className="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <a href="/">
-                <img className="p-8 rounded-t-lg" src="https://images.pexels.com/photos/18264716/pexels-photo-18264716/free-photo-of-man-people-laptop-internet.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="product_image1" />
+                <img className="p-8 rounded-t-lg" src="https://imgs.search.brave.com/2WkJzzAH50nD8DXFI68YCFpS0pDv4Urk7Oquyq0qhMg/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0cv/MzEvbWcxOC9BcHBs/ZS93YXRjaC8yNDBf/MTYwL1dhdGNoU2Vy/aWVzMy1DZWxsdWxh/ci0zOG1tLUFsdW1p/bnVtU3BhY2VHcmF5/LVNwb3J0QmFuZC1C/bGFjay0zNFItU0NS/RUVOLl9DQjQzNjc0/NzI5MF8ucG5n" alt="product_image1" />
             </a>
             <div className="px-5 pb-5">
                 <a href="/">
