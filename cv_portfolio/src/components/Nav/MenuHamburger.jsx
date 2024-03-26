@@ -5,7 +5,7 @@ import { IoClose } from "react-icons/io5";
 const MenuHamburger = () => {
     const [isMenuOpen,setIsMenuOpen] =useState(true)
     useEffect(()=>{
-        
+
     },[isMenuOpen])
   return (
     <div className='transition-all' onClick={()=>setIsMenuOpen((prev)=> !prev)}>
@@ -15,3 +15,5 @@ const MenuHamburger = () => {
 }
 
 export default MenuHamburger
+
+
