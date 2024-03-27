@@ -4,6 +4,7 @@ import { IoLibrary } from "react-icons/io5";
 import { RiCodeSSlashFill } from "react-icons/ri";
 import { GrCodeSandbox } from "react-icons/gr";
 import { RiFlutterFill } from "react-icons/ri";
+import Client from './Client';
 
 const About = () => {
   const carddata = [
@@ -29,8 +30,8 @@ const About = () => {
 }
   ]
   return (
-    <div className='py-[50px] px-[60px]'>
-      <h2 className="text-white  text-[36px] font-bold leading-[54px] my-0 mb-[15px] capitalize">
+    <div className='relative py-[50px] px-[60px]'>
+      <h2 className="text-black dark:text-white  text-[36px] font-bold leading-[54px] my-0 mb-[15px] capitalize">
         About
     </h2>
     <p className='mb-[16px]'>
@@ -50,6 +51,9 @@ const About = () => {
       ))}
      </div>
      </div>
+
+     <Client/>
+     
     </div>
   )
 }

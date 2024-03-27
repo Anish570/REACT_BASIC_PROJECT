@@ -7,10 +7,10 @@ const DataCard = ({data}) => {
             {data.icon}
         </div>
         <div>
-           <div className="text-white text-lg font-medium  text-[33px] my-0 mb-[10px] capitalize">
+           <div className="text-black dark:text-white text-lg font-medium  text-[33px] my-0 mb-[10px] capitalize">
            {data.title}
            </div>
-            <div>
+            <div className='text-[#44566c]'>
             {data.desc}
             </div>
         </div>

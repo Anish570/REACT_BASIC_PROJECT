@@ -35,10 +35,10 @@ const Info = () => {
                         {item.icon} 
                   </div>
                   <div>
-                    <span className='text-[#a6a6a6] text-[12px] line-height-[18px] mt-0 mb-3 text-left capitalize'>
+                    <span className='text-[#44566c] dark:text-[#a6a6a6] text-[12px] line-height-[18px] mt-0 mb-3 text-left capitalize'>
                       {item.title} 
                        </span>
-                    <p className="text-white  text-[14px] place-self-auto leading-[24px] text-left capitalize">
+                    <p className="text-black dark:text-white  text-[14px] place-self-auto leading-[24px] text-left capitalize">
                       {item.des} 
                     </p>
 
