@@ -75,14 +75,7 @@ function App() {
           <Sidebar/>
           <div className='bg-white relative text-black dark:bg-black dark:text-white overflow-x-hidden w-[70%] h-[750px] rounded-[15px]' 
            style={{
-            /* Hide the scrollbar */
-            scrollbarWidth: 'none', /* Firefox */
-            msOverflowStyle: 'none', /* Internet Explorer 10+ */
-        
-            /* Hide the scrollbar for WebKit browsers */
-            '&::-webkit-scrollbar': {
-                display: 'none'
-            }
+            scrollbarWidth: 'none',
         }}>
             <Outlet/>
           </div>
