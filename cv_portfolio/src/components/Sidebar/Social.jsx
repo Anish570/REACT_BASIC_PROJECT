@@ -9,26 +9,30 @@ const Social = () => {
   const socialdata= [
     {
       icon: <FaFacebookF/>,
-      link:"www.facebook.com"
+      link:"www.facebook.com",
+      class:"text-blue-500"
     },
     {
       icon: <FaXTwitter/>,
-      link:"www.twitter.com"
+      link:"www.twitter.com",
+      class:"text-black dark:text-white "
     },
     {
       icon: <FaInstagram/>,
-      link:"www.instagram.com"
+      link:"www.instagram.com",
+      class:"text-pink-600"
     },
     {
       icon: <TbBrandLinkedin/>,
-      link:"www.linkedin.com"
+      link:"www.linkedin.com",
+      class:"text-blue-500"
     },
   ]
   return (
-    <div className='my-3 w-full flex items-center gap-3 justify-center'>
+    <div className='my-3  w-full flex items-center gap-3 justify-center'>
       {
         socialdata.map((item,index)=>(
-            <div className='border-[1px] text-[18px] rounded-lg border-white p-2 hover:bg-blue-600' key={index}> {item.icon} </div>
+            <div className={`bg-[#f3f6f6] dark:bg-[#1d1d1d] ${item.class} hover:text-white text-[18px] rounded-lg p-2 hover:bg-blue-600 dark:hover:bg-blue-600` } key={index}> {item.icon} </div>
         ))
       }
     </div>
