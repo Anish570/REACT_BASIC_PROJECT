@@ -1,0 +1,20 @@
+
+.boxes {
+    border-radius: 12px;
+    display: flex;
+    margin: 2px;
+    cursor: pointer;
+    background-color: #1f3540;
+    border: 1px solid #0f1b21;
+    width: 130px;
+    height: 130px;
+}
+.boxes img{
+    padding: 50px 50px;
+}
+
+h1 img{
+    padding: 20px 20px;
+    width: 100px;
+    margin-top: 13px;
+}
