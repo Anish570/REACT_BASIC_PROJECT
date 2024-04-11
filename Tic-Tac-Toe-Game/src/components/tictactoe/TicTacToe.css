@@ -1,4 +1,8 @@
 
+.boxes img{
+    padding: 25px 25px;
+}
+
 .boxes {
     border-radius: 12px;
     display: flex;
@@ -9,19 +13,34 @@
     width: 130px;
     height: 130px;
 }
-@media (max-width: 640px) { 
+h1 img{
+    padding: 15px 20px;
+    width: 80px;
+    /* margin-top: 13px; */
+}
+
+
+@media only screen and (max-width: 767px) {
+    /* CSS rules specific to mobile devices */
+    .h1 img{
+        padding: 20px 20px;
+        width: 80px;
+       margin-top: -6px;
+    }
    .boxes{
     width: 100px;
     height: 100px;
-   }
-}
-
-.boxes img{
-    padding: 50px 50px;
-}
-
-h1 img{
+   } 
+    
+    /* .boxes img{
+    width:100%;
     padding: 20px 20px;
-    width: 100px;
-    margin-top: 13px;
+   } */
+  }
+  
+@media (max-width: 640px) { 
+   
+  
+   
 }
+
