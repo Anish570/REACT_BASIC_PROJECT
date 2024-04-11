@@ -9,6 +9,7 @@ const TicTacToe = () => {
   const [count,setCount] = useState(0);
   const [lock,setLock] = useState(false);
   const titleRef = useRef(null);
+  const boxesref = useRef(null);
   // const toggle = (e, num) => {
   //   if (lock) {
   //     return;
@@ -34,9 +35,11 @@ const TicTacToe = () => {
   //   }
   // };
   const handlereset = (e) =>{
-    setLock(false);
-    data = ["","","","","","","","",""];
-    titleRef.current.innerHTML = `Tic Tac Toe Game in <span> React </span>`
+    // setLock(false);
+    // data = ["","","","","","","","",""];
+    // titleRef.current.innerHTML = `Tic Tac Toe Game in <span> React </span>`
+    // boxesref.current.innerHTML = "";
+    window.location.reload();
   }
   const toggle = (e,num)=>{
     if(lock){
@@ -93,25 +96,25 @@ const TicTacToe = () => {
   }
   return (
     <>
-      <div className="w-[60%] h-full flex flex-col items-center justify-center absolute left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] ">
-        <h1 ref={titleRef} className="text-white text-[60px] flex items-center justify-center gap-[15px]">
+      <div className="h-full flex flex-col items-center justify-center absolute left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] ">
+        <h1 ref={titleRef} className="text-[35px] w-[100%] text-white mb-[15px] md:mb-[]  md:text-[50px] text-nowrap flex flex-shrink-[1] flex-nowrap gap-[15px]">
           Tic Tac Toe Game in <span className="text-[#26ffcb] ">React</span>
         </h1>
-        <div className="board  flex justify-center items-center ">
+        <div className="board flex justify-center items-center ">
           <div className="row1">
-            <div className="boxes" onClick={(e)=>toggle(e,0)}></div>
-            <div className="boxes" onClick={(e)=>toggle(e,1)}></div>
-            <div className="boxes" onClick={(e)=>toggle(e,2)}></div>
+            <div className="boxes" ref={boxesref} onClick={(e)=>toggle(e,0)}></div>
+            <div className="boxes" ref={boxesref} onClick={(e)=>toggle(e,1)}></div>
+            <div className="boxes" ref={boxesref} onClick={(e)=>toggle(e,2)}></div>
           </div>
           <div className="row2">
-            <div className="boxes" onClick={(e)=>toggle(e,3)}></div>
-            <div className="boxes" onClick={(e)=>toggle(e,4)}></div>
-            <div className="boxes" onClick={(e)=>toggle(e,5)}></div>
+            <div className="boxes" ref={boxesref} onClick={(e)=>toggle(e,3)}></div>
+            <div className="boxes" ref={boxesref} onClick={(e)=>toggle(e,4)}></div>
+            <div className="boxes" ref={boxesref} onClick={(e)=>toggle(e,5)}></div>
           </div>
           <div className="row3">
-            <div className="boxes" onClick={(e)=>toggle(e,6)}></div>
-            <div className="boxes" onClick={(e)=>toggle(e,7)}></div>
-            <div className="boxes" onClick={(e)=>toggle(e,8)}></div>
+            <div className="boxes" ref={boxesref} onClick={(e)=>toggle(e,6)}></div>
+            <div className="boxes" ref={boxesref} onClick={(e)=>toggle(e,7)}></div>
+            <div className="boxes" ref={boxesref} onClick={(e)=>toggle(e,8)}></div>
           </div>
         </div>
         <button
