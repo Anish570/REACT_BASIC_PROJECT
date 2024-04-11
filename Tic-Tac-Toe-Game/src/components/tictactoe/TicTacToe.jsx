@@ -2,10 +2,15 @@ import React, { useRef, useState } from "react";
 import "./TicTacToe.css";
 import circle from "../../assets/circle.png";
 import cross from "../../assets/cross.png";
+import JSConfetti from 'js-confetti'
+
+const jsConfetti = new JSConfetti()
+
 
 let data = ["","","","","","","","",""]
 
 const TicTacToe = () => {
+
   const [count,setCount] = useState(0);
   const [lock,setLock] = useState(false);
   const titleRef = useRef(null);
@@ -35,10 +40,7 @@ const TicTacToe = () => {
   //   }
   // };
   const handlereset = (e) =>{
-    // setLock(false);
-    // data = ["","","","","","","","",""];
-    // titleRef.current.innerHTML = `Tic Tac Toe Game in <span> React </span>`
-    // boxesref.current.innerHTML = "";
+   
     window.location.reload();
   }
   const toggle = (e,num)=>{
@@ -89,9 +91,17 @@ const TicTacToe = () => {
     setLock(true)
     if(winner === "X"){
       titleRef.current.innerHTML = `Congratulation: <img className="w-[50px]" src='${cross}'> won`
+      jsConfetti.addConfetti({
+        confettiRadius:2,
+        confettiNumber:600,
+      })
     }
     else{
       titleRef.current.innerHTML= `Congratulation: <img className="w-[50px]" src='${circle}'> won`
+      jsConfetti.addConfetti({
+        confettiRadius:2,
+        confettiNumber:600,
+      })
     }
   }
   return (
