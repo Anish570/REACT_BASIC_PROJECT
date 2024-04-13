@@ -3,19 +3,12 @@ import { useEffect, useState, } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import {db} from './config/firebase'
 import AddandUpdate from "./components/AddandUpdate";
+import useDisclose from "./components/Hooks/useDisclose";
 
 
 function App() {
 const [contacts, setContacts] = useState([]);
-const [isOpen,setIsOpen] = useState(false)
-
-const onOpen = ()=>{
-  setIsOpen(true)
-}
-
-const onClose = ()=>{
-  setIsOpen(false)
-}
+const {isOpen,onClose,onOpen} = useDisclose(false)
 
 useEffect(()=>{
   const getContacts = async()=>{
@@ -47,7 +40,7 @@ useEffect(()=>{
   <div className="mt-2">
   {
   contacts.map((item) => (
-    <ContactsP key={item.id} data={item} />
+    <ContactsP key={item.id} data={item}/>
   ))
 }
   </div>
