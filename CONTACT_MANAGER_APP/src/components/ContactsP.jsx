@@ -28,11 +28,11 @@ const ContactsP = ({data}) => {
                   <p className='text-sm '> {data.email}</p>
                 </div>
                 <div className='text-2xl flex items-center'>
-                    <FaEdit onClick={onOpen}/>
-                    <MdDelete onClick={()=>{deleteContact(data.id)}} className='text-red-700'/>
+                    <FaEdit onClick={onOpen} className='cursor-pointer'/>
+                    <MdDelete onClick={()=>{deleteContact(data.id)}} className='text-red-700 cursor-pointer'/>
                 </div>
             </div>
-            <AddandUpdate isOpen={isOpen} onClose={onClose}/>
+            <AddandUpdate isUpdate contactdata={data} isOpen={isOpen} onClose={onClose}/>
         </>
   )
 }
