@@ -9,7 +9,7 @@ const Modal = ({isOpen,onClose,children}) => {
     {
         isOpen && (
             <>
-            <div className='z-[999] absolute top-[30%] left-[50%] -translate-x-[50%] min-h-[200px] min-w-[300px] bg-slate-300 p-4'>
+            <div className='z-[999] absolute top-[30%] left-[50%] -translate-x-[50%] min-h-[220px] min-w-[300px] bg-slate-300 p-4'>
                         <div className='flex justify-end'>
                             <AiOutlineClose onClick={onClose} 
                             className='text-black text-2xl'/>
