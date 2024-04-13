@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Navbar, Search, ContactsP } from "./components"
 import { useEffect, useState, } from "react";
 import { collection, getDocs, onSnapshot} from "firebase/firestore";
@@ -7,6 +9,25 @@ import useDisclose from "./components/Hooks/useDisclose";
 
 
 function App() {
+  
+  const filterContacts = async (value) => {
+    try {
+      const contactsRef = collection(db, "contact");
+      onSnapshot(contactsRef, (snapshot) => {
+        const contactList = snapshot.docs.map((items) => ({
+          id: items.id,
+          ...items.data()
+        }));
+        const filteredContacts = contactList.filter(contact =>
+          contact.name.toLowerCase().includes(value.toLowerCase())
+        );
+        setContacts(filteredContacts);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 const [contacts, setContacts] = useState([]);
 const {isOpen,onClose,onOpen} = useDisclose(false)
 
@@ -40,7 +61,7 @@ useEffect(()=>{
     <div className="w-full relative m-auto ">
   <div className=" px-4 m-auto max-w-[370px]">
   <Navbar/>
-  <Search onOpen={onOpen}/>
+  <Search filter ={filterContacts} onOpen={onOpen}/>
   <div className="mt-2">
   {
   contacts.map((item) => (
@@ -52,6 +73,18 @@ useEffect(()=>{
   <AddandUpdate  isOpen={isOpen} onClose={onClose}/>
 
 </div>
+<ToastContainer
+position="bottom-center"
+autoClose={2000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss={false}
+draggable
+pauseOnHover
+theme="light"
+/>
     </>
   )
 }
