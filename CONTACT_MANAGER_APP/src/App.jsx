@@ -6,7 +6,7 @@ import { collection, getDocs, onSnapshot} from "firebase/firestore";
 import {db} from './config/firebase'
 import AddandUpdate from "./components/AddandUpdate";
 import useDisclose from "./components/Hooks/useDisclose";
-
+import NotFound from './components/NotFound';
 
 function App() {
   
@@ -63,8 +63,8 @@ useEffect(()=>{
   <Navbar/>
   <Search filter ={filterContacts} onOpen={onOpen}/>
   <div className="mt-2">
-  {
-  contacts.map((item) => (
+  { contacts.length <= 0 ? <NotFound className="mt-[20px] absolute left-[50%] -translate-x-[50%] flex gap-2 flex-col justify-center items-center font-medium"/> :
+    contacts.map((item) => (
     <ContactsP key={item.id} data={item}/>
   ))
 }
