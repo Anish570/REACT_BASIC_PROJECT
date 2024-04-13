@@ -1,6 +1,6 @@
 import { Navbar, Search, ContactsP } from "./components"
 import { useEffect, useState, } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, onSnapshot} from "firebase/firestore";
 import {db} from './config/firebase'
 import AddandUpdate from "./components/AddandUpdate";
 import useDisclose from "./components/Hooks/useDisclose";
@@ -14,14 +14,18 @@ useEffect(()=>{
   const getContacts = async()=>{
     try {
       const contactsRef = collection(db,"contact");
-      const contactsSnapshot =await getDocs(contactsRef);
-      const contactList = contactsSnapshot.docs.map((items) => {
-       return{
-        id:items.id,
-        ...items.data()
-       }
-    })
+      // const contactsSnapshot =await getDocs(contactsRef);
+      onSnapshot(contactsRef,(snapshot)=>{
+        const contactList = snapshot.docs.map((items) => {
+          return{
+           id:items.id,
+           ...items.data()
+          }
+      })  
       setContacts(contactList)
+      return contactList;
+    })
+     
     } catch (error) {
       console.log(error);
       // console.error('error message is:',error);

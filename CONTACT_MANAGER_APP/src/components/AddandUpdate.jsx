@@ -8,6 +8,7 @@ const AddandUpdate = ({isOpen,onClose,isUpdate,contactdata}) => {
             try {
                 const contactRef = collection(db,"contact");
                 await addDoc(contactRef,contact)
+                onClose();
             } catch (error) {
                 console.log(error)
             }
@@ -17,6 +18,7 @@ const AddandUpdate = ({isOpen,onClose,isUpdate,contactdata}) => {
         try {
             const contactRef = doc(db,"contact",id);
             await updateDoc(contactRef,contact)
+            onClose();
         } catch (error) {
             console.log(error)
         }
