@@ -106,7 +106,7 @@ const TicTacToe = () => {
   }
   return (
     <>
-      <div className="h-full flex flex-col items-center justify-center absolute left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] ">
+      <div className="h-full w-full flex flex-col items-center justify-center absolute left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] ">
         <h1 ref={titleRef} className="text-[35px] w-[100%] text-white mb-[15px] md:mb-[]  md:text-[50px] text-nowrap flex flex-shrink-[1] flex-nowrap gap-[15px]">
           Tic Tac Toe Game in <span className="text-[#26ffcb] ">React</span>
         </h1>

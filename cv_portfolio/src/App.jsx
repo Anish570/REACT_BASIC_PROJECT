@@ -8,9 +8,27 @@ import { RiContactsBookFill } from "react-icons/ri";
 import Sidebar from './components/Sidebar/Sidebar';
 import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
-
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 function App() {
+  const downloadPDF = () => {
+    const section = document.getElementById('pdf-section');
+
+    html2canvas(section)
+      .then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        const imgWidth = 210;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+        pdf.save('section.pdf');
+      });
+  };
+
+
+  
   const menuItems = [
     {
       title: "About",
@@ -73,13 +91,15 @@ function App() {
         
         <div className='flex items-center flex-wrap gap-8 justify-center mt-16'>
           <Sidebar/>
-          <div className='bg-white relative text-black dark:bg-black dark:text-white overflow-x-hidden w-[70%] h-[750px] rounded-[15px]' 
+          <div id="pdf-section" className='bg-white relative text-black dark:bg-black dark:text-white overflow-x-hidden w-[70%] h-[750px] rounded-[15px]' 
            style={{
             scrollbarWidth: 'none',
         }}>
+
             <Outlet/>
           </div>
         </div>
+        <button onClick={downloadPDF} className='text-black dark:text-white font-semibold text-2xl'>Download</button>
 
       </div>
     </div>
