@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import CourseForm from './components/CourseForm'
+import CourseList from './components/CourseList'
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
           marginBottom: "2rem"
         }}>My Course List</h1>
         <CourseForm />
+        <CourseList />
       </div>
     </>
   )

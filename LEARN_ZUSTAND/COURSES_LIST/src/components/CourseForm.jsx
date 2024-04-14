@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import useCourseStore from '../app/courseStore'
 
 const CourseForm = () => {
-    const addCourse = useCourseStore((state) => state.addCouse);
+    const addCourse = useCourseStore((state) => state.addCourse);
     const [courseTitle, setCourseTitle] = useState("");
     const handleFormSubmit = (e) => {
         if (!courseTitle) return alert("please add course title");
         addCourse({
             id: Math.ceil(Math.random() * 10000),
-            title: courseTitle
+            title: courseTitle,
+            completed: false
         })
         setCourseTitle("")
     }

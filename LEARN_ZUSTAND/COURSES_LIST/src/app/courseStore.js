@@ -5,19 +5,19 @@ const getStorage = () => localStorage;
 
 const courseStore = (set) => ({
   courses: [],
-  addCouse: (course) => {
+  addCourse: (course) => {
     set((state) => ({
       courses: [course, ...state.courses],
     }));
   },
   removeCourse: (courseId) => {
     set((state) => ({
-      courses: state.couses.filter((c) => c.id !== courseId),
+      courses: state.courses.filter((c) => c.id !== courseId),
     }));
   },
   toggleCourseStatus: (courseId) => {
     set((state) => ({
-      courses: state.couses.map((course) =>
+      courses: state.courses.map((course) =>
         course.id === courseId
           ? { ...course, completed: !course.completed }
           : course
