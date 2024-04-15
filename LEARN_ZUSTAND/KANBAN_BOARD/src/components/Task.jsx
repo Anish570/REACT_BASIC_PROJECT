@@ -4,11 +4,13 @@ import { useStore } from '../store';
 import { FaRegTrashCan } from "react-icons/fa6";
 
 const Task = ({ title }) => {
+    const setDraggedTask = useStore((store) => store.setDraggedTask)
     const task = useStore((store) => store.tasks.find((task) => task.title === title));
     const deleteTask = useStore((store) => store.deleteTask);
     const status = task.state.toLowerCase();
     return (
-        <div draggable className='bg-white cursor-move  text-black min-h-[5rem] rounded-md p-[0.5rem] flex flex-col mb-[10px] justify-between '>
+        <div draggable onDragStart={() => { setDraggedTask(task.title) }}
+            className='bg-white cursor-move  text-black min-h-[5rem] rounded-md p-[0.5rem] flex flex-col mb-[10px] justify-between '>
             <div>
                 {title}
             </div>

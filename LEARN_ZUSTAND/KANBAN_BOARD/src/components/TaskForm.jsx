@@ -9,7 +9,7 @@ const TaskForm = ({ isOpen, onClose, state }) => {
         addTask(text, state)
         onClose();
     }
-    console.log("state received in form: ", state)
+
     return (
         <>
             {
