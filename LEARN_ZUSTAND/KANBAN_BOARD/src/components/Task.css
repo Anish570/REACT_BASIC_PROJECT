@@ -1,0 +1,11 @@
+.planned{
+        background-color: skyblue;
+}
+
+.ongoing{
+        background-color: lightgreen;
+}
+
+.done{
+        background-color:var(--COLOR-DONE);
+}
