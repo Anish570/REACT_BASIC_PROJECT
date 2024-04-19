@@ -1,12 +1,22 @@
 import React from 'react'
-import SideNav from '../../SideBar/SideNav'
-import { Box } from '@chakra-ui/react'
+import SideNav from '../../NavBars/SideNav'
+import TopNav from '../../NavBars/TopNav'
 
 const Dashboard = () => {
     return (
-        <Box>
-            <SideNav />
-        </Box>
+        <>
+            <div className="flex ">
+                <div className="sm:w-[18%] h-screen ">
+                    <SideNav />
+                </div>
+                <div className="grow  ">
+                    <div className="w-[100%] flex justify-center items-center shadow-lg h-[10%]">
+                        <TopNav />
+                    </div>
+                </div>
+            </div>
+        </>
+
     )
 }
 
