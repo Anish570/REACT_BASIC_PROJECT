@@ -9,12 +9,12 @@ const DashboardLayout = ({ title, children }) => {
     return (
         <>
             <div className="flex ">
-                <div className="sm:w-[18%] h-screen hidden sm:block">
+                <div className="md:w-[18%]  hidden sm:hidden md:block">
                     <SideNav />
                     <SideBarDrawer isOpen={isOpen} onClose={onClose} />
                 </div>
                 <div className="grow  ">
-                    <div className="w-[100%] flex justify-center items-center bg-white h-[10vh] sm:h-[10%]">
+                    <div className="w-[100%] flex justify-center items-center bg-white h-[10vh] md:h-[10%]">
                         <TopNav title={title} onOpen={onOpen} />
                     </div >
                     <div className="">{children}</div>

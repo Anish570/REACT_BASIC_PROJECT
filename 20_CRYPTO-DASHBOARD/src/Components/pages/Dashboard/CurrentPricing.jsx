@@ -19,7 +19,7 @@ const CurrentPricing = () => {
                     </div>
                 </div>
 
-                <div className='w-[40%] flex items-center  gap-4'>
+                <div className='w-[50%] flex items-center justify-end md:justify-center gap-2 sm:gap-4'>
                     <div className='flex items-center gap-2 bg-purple-800 hover:bg-purple-600 py-[5px] px-[10px] rounded-lg text-white'>
                         <BsFillPlusCircleFill />
                         Buy
