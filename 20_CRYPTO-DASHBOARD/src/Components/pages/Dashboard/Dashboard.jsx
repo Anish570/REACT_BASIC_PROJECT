@@ -1,22 +1,18 @@
 import React from 'react'
-import SideNav from '../../NavBars/SideNav'
-import TopNav from '../../NavBars/TopNav'
+import DashboardLayout from './DashboardLayout'
+import Portfoliosection from './Portfoliosection'
 
 const Dashboard = () => {
+    const title = "Dashboard"
     return (
-        <>
-            <div className="flex ">
-                <div className="sm:w-[18%] h-screen ">
-                    <SideNav />
+        <div className='bg-[#f3f3f7]'>
+            <DashboardLayout title={title}>
+                <div className='m-[5%] '>
+                    <Portfoliosection />
                 </div>
-                <div className="grow  ">
-                    <div className="w-[100%] flex justify-center items-center shadow-lg h-[10%]">
-                        <TopNav />
-                    </div>
-                </div>
-            </div>
-        </>
+            </DashboardLayout>
 
+        </div>
     )
 }
 

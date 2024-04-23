@@ -24,7 +24,7 @@ const SideNav = () => {
     ]
 
     return (
-        <div className="pl-2 flex flex-col justify-between h-full shadow-lg ">
+        <div className="pl-2 flex flex-col justify-between h-full bg-white sm:shadow-lg ">
 
             <div>
                 <h1 className="pt-[6%] text-center text-[24px] mb-6 font-medium">@anishgtm</h1>

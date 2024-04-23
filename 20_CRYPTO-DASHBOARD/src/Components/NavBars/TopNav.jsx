@@ -1,12 +1,14 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import React from 'react'
 import { IoChevronDownCircleOutline } from 'react-icons/io5'
+import { GiHamburgerMenu } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
-const TopNav = () => {
+const TopNav = ({ title, onOpen }) => {
     return (
-        <div className="flex w-[70%] justify-between  ">
-            <div>
-                <h1 className="text-[24px] font-medium">Dashboard</h1>
+        <div className="flex w-[100%] sm:w-[80%] justify-between px-[10px] ">
+            <div className='flex items-center justify-between gap-6'>
+                <GiHamburgerMenu onClick={onOpen} className='block sm:hidden text-2xl' />
+                <h1 className="text-[24px] font-medium">{title}</h1>
             </div>
             <div>
                 <Menu>
