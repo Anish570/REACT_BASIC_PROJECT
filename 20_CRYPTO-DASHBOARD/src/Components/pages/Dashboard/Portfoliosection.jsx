@@ -7,7 +7,7 @@ import Cryptoimg from './assets/icons8-crypto-256.png'
 
 const Portfoliosection = () => {
     return (
-        <div className='p-[24px] bg-white  font-medium flex flex-wrap justify-between '>
+        <div className=' flex flex-wrap justify-between '>
             <div className='flex flex-wrap sm:gap-[13%] w-[70%]'>
                 <div className='flex  flex-col sm:gap-2'>
                     <div className='flex items-center gap-1 text-gray-700 text-[14px]'>
@@ -34,7 +34,7 @@ const Portfoliosection = () => {
                 </div>
             </div>
 
-            <div className='flex items-center flex-wrap gap-4'>
+            <div className='w-[30%] flex items-center flex-wrap gap-4'>
                 <div className='flex items-center gap-2 bg-purple-800 hover:bg-purple-600 py-[5px] px-[10px] rounded-lg text-white'>
                     <HiDownload />
                     Deposit
