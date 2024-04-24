@@ -9,7 +9,7 @@ import Contacts from './Contacts'
 const Dashboard = () => {
     const title = "Dashboard"
     return (
-        <div className='bg-[#f3f3f7]'>
+        <div className='bg-[#f3f3f7] h-full md:h-screen'>
             <DashboardLayout title={title}>
                 <div className='mx-[2%] md:mx-[5%] py-[3%]  flex flex-col flex-wrap gap-4 '>
                     <div className='p-[20px] bg-white w-[100%]  font-medium rounded-lg'>
