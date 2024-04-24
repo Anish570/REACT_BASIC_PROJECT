@@ -5,6 +5,31 @@ import { MdOutlineArrowOutward } from "react-icons/md";
 import graph from './assets/graph.jpg'
 
 const CurrentPricing = () => {
+    const Weeks = [
+        {
+            title: "1H",
+        },
+        {
+            title: "1D",
+            isActive: true,
+        },
+        {
+            title: "1W",
+        },
+        {
+            title: "1M",
+        },
+        // {
+        //     title: "6M",
+        // },
+        // {
+        //     title: "1Y",
+        // },
+        // {
+        //     title: "ALL",
+        // },
+
+    ]
     return (
         <div className='flex flex-col'>
             <div className='font-medium flex justify-between'>
@@ -36,8 +61,12 @@ const CurrentPricing = () => {
 
 
 
-            <div className=' w-[40%] self-end'>
-                hello
+            <div className='w-[40%] flex justify-around py-[4px] rounded-lg self-end bg-slate-300 mr-[5%]'>
+                {
+                    Weeks.map((item, index) => (
+                        <button key={index} className={`${item.isActive ? "bg-white" : ""} text-[12px] font-medium flex items-center justify-center rounded-lg py-[2px] px-[7px]`}>{item.title}</button>
+                    ))
+                }
             </div>
             <div className='w-full  '>
                 <img src={graph} alt="" />
