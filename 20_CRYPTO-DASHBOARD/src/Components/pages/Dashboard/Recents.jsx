@@ -4,21 +4,21 @@ const Recents = () => {
     const RecentTrans = [
         {
             icon: <HiCurrencyRupee className='w-[25px] h-[25px]' />,
-            title: "INR DEPOSIT",
+            title: "NPR WITHDRAW",
             time: "2024-04-24 7:00 PM",
-            amount: "+ RS. 20,000.13"
+            amount: "- Rs. 20,000.13"
         },
         {
             icon: <HiCurrencyRupee className='w-[25px] h-[25px]' />,
-            title: "INR DEPOSIT",
+            title: "BTC SELL",
             time: "2024-04-24 7:00 PM",
-            amount: "+ RS. 20,000.13"
+            amount: "- 200"
         },
         {
             icon: <HiCurrencyRupee className='w-[25px] h-[25px]' />,
-            title: "INR DEPOSIT",
+            title: "NPR DEPOSIT",
             time: "2024-04-24 7:00 PM",
-            amount: "+ RS. 20,000.13"
+            amount: "+ Rs. 20,000.13"
         },
 
     ]
