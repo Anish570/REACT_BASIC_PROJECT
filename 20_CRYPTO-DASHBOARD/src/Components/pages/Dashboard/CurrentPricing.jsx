@@ -2,8 +2,8 @@ import React from 'react'
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import { AiFillMinusCircle } from "react-icons/ai";
 import { MdOutlineArrowOutward } from "react-icons/md";
-import graph from './assets/graph.jpg'
-
+import graph1 from './assets/graph.jpg'
+import { Tabs, TabList, TabPanels, Tab, TabPanel, Flex } from '@chakra-ui/react'
 const CurrentPricing = () => {
     const Weeks = [
         {
@@ -19,16 +19,24 @@ const CurrentPricing = () => {
         {
             title: "1M",
         },
-        // {
-        //     title: "6M",
-        // },
-        // {
-        //     title: "1Y",
-        // },
-        // {
-        //     title: "ALL",
-        // },
-
+    ]
+    const Paneldata = [
+        {
+            image: graph1,
+            timestamp: ["2:12 PM", "2:24 PM", "2:36 PM", "2:48 PM", "3:00 PM"],
+        },
+        {
+            image: graph1,
+            timestamp: ["10:00 PM", "12:00 PM", "2:15 PM", "4:00 PM", "5:15 PM"]
+        },
+        {
+            image: graph1,
+            timestamp: ["Sun", "Mon", "Tue", "Wed", "Thu"]
+        },
+        {
+            image: graph1,
+            timestamp: ["Apr 19", "Apr 20", "Apr 21", "Apr 22", "Apr 23",]
+        },
     ]
     return (
         <div className='flex flex-col'>
@@ -44,7 +52,7 @@ const CurrentPricing = () => {
                     </div>
                 </div>
 
-                <div className='w-[50%] flex items-center justify-end md:justify-center gap-2 sm:gap-4'>
+                <div className='w-[50%] flex items-center justify-end  gap-2 sm:gap-4'>
                     <div className='flex items-center gap-2 bg-purple-800 hover:bg-purple-600 py-[5px] px-[10px] rounded-lg text-white'>
                         <BsFillPlusCircleFill />
                         Buy
@@ -61,22 +69,43 @@ const CurrentPricing = () => {
 
 
 
-            <div className='w-[40%] flex justify-around py-[4px] rounded-lg self-end bg-slate-300 mr-[5%]'>
-                {
+            <div className=''>
+                {/* {
                     Weeks.map((item, index) => (
                         <button key={index} className={`${item.isActive ? "bg-white" : ""} hover:bg-white text-[12px] font-medium flex items-center justify-center rounded-lg py-[2px] px-[7px]`}>{item.title}</button>
                     ))
-                }
-            </div>
-            <div className='w-full '>
-                <img src={graph} className='w-full' alt="" />
-                <div className='flex justify-around items-center  text-gray-700 text-[13px]'>
-                    <p>10:15 AM</p>
-                    <p>12:00 PM</p>
-                    <p>1:45 PM</p>
-                    <p>3:15 PM</p>
-                    <p>5:00 PM</p>
-                </div>
+                } */}
+                <Tabs>
+                    <Flex justify="end">
+                        <TabList className='bg-gray-300 rounded-lg p-[2px]'>
+                            {
+                                Weeks.map((item, index) => (
+                                    <Tab fontSize="10px" key={index} _selected={{ color: 'black', bg: 'white' }} className={`font-medium flex items-center justify-center rounded-lg`}>{item.title}</Tab>
+                                ))
+                            }
+                        </TabList>
+                    </Flex>
+                    <TabPanels>
+                        {
+                            Paneldata.map((item, index) => (
+                                <TabPanel key={index}>
+                                    <img src={item.image} className='w-full' alt="" />
+                                    <div className='flex justify-around items-center  text-gray-700 text-[12px]'>
+                                        {
+                                            item.timestamp.map((time, idx) => (
+                                                <p key={idx}>{time}</p>
+                                            ))
+                                        }
+                                    </div>
+                                </TabPanel>
+                            ))
+                        }
+
+                    </TabPanels>
+                </Tabs>
+
+
+
             </div>
 
         </div>
