@@ -64,16 +64,21 @@ const CurrentPricing = () => {
             <div className='w-[40%] flex justify-around py-[4px] rounded-lg self-end bg-slate-300 mr-[5%]'>
                 {
                     Weeks.map((item, index) => (
-                        <button key={index} className={`${item.isActive ? "bg-white" : ""} text-[12px] font-medium flex items-center justify-center rounded-lg py-[2px] px-[7px]`}>{item.title}</button>
+                        <button key={index} className={`${item.isActive ? "bg-white" : ""} hover:bg-white text-[12px] font-medium flex items-center justify-center rounded-lg py-[2px] px-[7px]`}>{item.title}</button>
                     ))
                 }
             </div>
-            <div className='w-full  '>
-                <img src={graph} alt="" />
+            <div className='w-full '>
+                <img src={graph} className='w-full' alt="" />
+                <div className='flex justify-around items-center  text-gray-700 text-[13px]'>
+                    <p>10:15 AM</p>
+                    <p>12:00 PM</p>
+                    <p>1:45 PM</p>
+                    <p>3:15 PM</p>
+                    <p>5:00 PM</p>
+                </div>
             </div>
-            <div className=''>
-                hellos
-            </div>
+
         </div>
     )
 }
