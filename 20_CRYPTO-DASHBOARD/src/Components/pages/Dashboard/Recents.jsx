@@ -28,7 +28,7 @@ const Recents = () => {
             <div>
                 {
                     RecentTrans.map((item, index) => (
-                        <div className='flex gap-2 sm:gap-4 items-center pt-[5px] sm:p-[5px]  '>
+                        <div key={index} className='flex gap-2 sm:gap-4 items-center pt-[5px] sm:p-[5px]  '>
                             <div className='flex items-center justify-center rounded-full w-[35px] h-[35px] bg-gray-200'>
 
                                 {item.icon}

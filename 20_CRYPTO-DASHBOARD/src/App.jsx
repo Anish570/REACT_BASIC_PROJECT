@@ -1,34 +1,42 @@
-import { useState } from 'react'
-import Dashboard from './Components/pages/Dashboard/Dashboard'
-import Support from './Components/pages/Support/Support'
-import Transactions from './Components/pages/Transaction/Transaction'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Dashboard />,
-  },
-  {
-    path: "/transactions",
-    element: <Transactions />,
-  },
-  {
-    path: "/support",
-    element: <Support />,
-  },
-]);
-
+import DashboardLayout from './Components/pages/Dashboard/DashboardLayout';
+import { Outlet } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function App() {
+  const location = useLocation();
+  const [title, setTitle] = useState("Dashboard");
+
+  useEffect(() => {
+    // Define a function to update the title based on the pathname
+    const updateTitle = () => {
+      const pathname = location.pathname;
+      switch (pathname) {
+        case "/transactions":
+          setTitle("Transactions");
+          break;
+        case "/support":
+          setTitle("Support");
+          break;
+        default:
+          setTitle("Dashboard");
+      }
+    };
+    // Call the updateTitle function initially and whenever location changes
+    updateTitle();
+    // Clean up the effect to avoid memory leaks
+    return () => { };
+  }, [location]);
 
 
   return (
     <>
-      <RouterProvider router={router} />
+      <div className='bg-[#f3f3f7]  h-screen dark:bg-slate-900 dark:text-white '>
+        <DashboardLayout title={title}>
+          <Outlet />
+        </DashboardLayout>
+
+      </div>
 
     </>
   )
