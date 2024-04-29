@@ -3,12 +3,9 @@ import Home from "./Components/Home"
 import Register from "./Components/Register"
 import Dashboard from "./Components/Dashboard"
 import Login from "./Components/Login"
-import { account } from "./Appwrite/Config"
-import { useEffect } from "react"
+
 function App() {
-  // useEffect(() => {
-  //   console.log(account)
-  // }, [])
+
   return (
     <>
       <BrowserRouter>

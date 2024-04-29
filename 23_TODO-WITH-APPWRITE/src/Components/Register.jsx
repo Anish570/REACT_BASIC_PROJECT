@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { account } from '../Appwrite/Config';
+import { useNavigate } from 'react-router-dom';
 const Register = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-
+    const navigate = useNavigate()
     const handleSubmmit = (e) => {
         e.preventDefault()
         // if (name === "" || email === "" || password === "") {
@@ -21,6 +22,7 @@ const Register = () => {
             let x = await account.create("unique()", email, password, name);
             console.log(x)
             console.log("Password is :", password)
+            navigate('/login')
         } catch (error) {
             console.error(error)
         }
