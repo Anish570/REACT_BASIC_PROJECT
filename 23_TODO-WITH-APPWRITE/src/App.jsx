@@ -6,12 +6,11 @@ import Login from "./Components/Login"
 import { account } from "./Appwrite/Config"
 import { useEffect } from "react"
 function App() {
-  useEffect(() => {
-    console.log(account)
-  }, [])
+  // useEffect(() => {
+  //   console.log(account)
+  // }, [])
   return (
     <>
-      <h1>hello world</h1>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} ></Route>
