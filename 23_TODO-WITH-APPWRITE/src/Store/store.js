@@ -1,47 +1,62 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { database, account } from "../Appwrite/Config";
+import { Query } from "appwrite";
+export const dbId = import.meta.env.VITE_DATABASE_ID;
+export const collectionId = import.meta.env.VITE_COLLECTION_ID;
+
+export const addTodo = (email, todo) => async (dispatch) => {
+  try {
+    // Assuming dbId and collectionId are properly defined
+    const response = await database.createDocument(
+      dbId,
+      collectionId,
+      "unique()",
+      {
+        Email: email,
+        Todo: todo,
+      }
+    );
+  } catch (error) {
+    console.error("Error adding todo:", error);
+  }
+};
+
+export const updateTodo = async (id, todo) => {
+  const todoToUpdate = state.todos.find((item) => item.id === id);
+  if (todoToUpdate) {
+    todoToUpdate.todo = todo;
+  }
+};
+
 const todoSlice = createSlice({
   name: "todo",
   initialState: {
-    todos: [
-      {
-        id: 1,
-        todo: "A message",
-        completed: false,
-      },
-    ],
+    todos: [],
   },
   reducers: {
-    addTodo: (state, action) => {
-      state.todos.push(action.payload);
-    },
-    updateTodo: (state, action) => {
-      const { id, todo } = action.payload;
-      const todoToUpdate = state.todos.find((item) => item.id === id);
-      if (todoToUpdate) {
-        todoToUpdate.todo = todo;
-      }
-    },
     deleteTodo: (state, action) => {
       const idToDelete = action.payload;
       state.todos = state.todos.filter((item) => item.id !== idToDelete);
     },
-    toggleComplete: (state, action) => {
-      const idToToggle = action.payload;
-      const todoToToggle = state.todos.find((item) => item.id === idToToggle);
-      if (todoToToggle) {
-        todoToToggle.completed = !todoToToggle.completed;
-      }
+  
+    setTodos: (state, action) => {
+      state.todos = action.payload;
     },
   },
 });
 
-export const { addTodo, updateTodo, deleteTodo, toggleComplete } =
-  todoSlice.actions;
+export const { deleteTodo, toggleComplete, setTodos } = todoSlice.actions;
 
-const store = configureStore({
+export const selectTodos = (state) => state.todo.todos;
+
+export const store = configureStore({
   reducer: {
     todo: todoSlice.reducer,
   },
 });
+
+// Fetch todos from the database when the store is initialized
+// store.dispatch(fetchTodos());
+// Instead of logging the selectTodos function, log the todos from the store
 
 export default store;

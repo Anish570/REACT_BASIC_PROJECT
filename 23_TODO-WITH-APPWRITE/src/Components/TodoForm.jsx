@@ -1,37 +1,18 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../Store/store';
-// import { useTodo } from '../contexts';
 
-function TodoForm() {
+
+function TodoForm({ email }) {
     const dispatch = useDispatch()
-    const [todos, setTodos] = useState([])
-    //     const addTodo = (todo) => {
-    //         console.log("This is a Add todo")
-    //         setTodos((prev) => [{ id: Date.now(), ...todo }, ...prev])
-    //     }
-    //     const updateTodo = (id, todo) => {
-    //         setTodos((prev) => prev.map((prevtodo) => (
-    //             prevtodo.id === id ? todo : prevtodo
-    //         )))
-    //     }
-    //     const deleteTodo = (id) => {
-    //         setTodos((prev) => prev.filter((todo) => todo.id !== id))
-    //     }
-    //     const toggleComplete = (id) => {
-    //         setTodos((prev) => prev.map((prevtodo) => (
-    //             prevtodo.id === id ? { ...prevtodo, completed: !prevtodo.completed } : prevtodo
-    //         )))
-    //     }
     const [todo, setTodo] = useState("")
-    //     const { addTodo } = useTodo()
+
     const add = (e) => {
         e.preventDefault()
         if (!todo) return
-        dispatch(addTodo({ id: Date.now(), todo: todo, completed: false }))
+        dispatch(addTodo(email, todo))
         setTodo("")
     }
-
 
     return (
         <form onSubmit={add} className="flex">

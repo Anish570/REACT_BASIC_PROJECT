@@ -1,57 +1,78 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { deleteTodo, toggleComplete, updateTodo } from '../Store/store'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteTodo, toggleComplete, updateTodo } from '../Store/store';
+import { database } from '../Appwrite/Config';
+import { collectionId, dbId } from '../Store/store';
+import { Query } from 'appwrite';
 
 function TodoItem({ todo }) {
     const dispatch = useDispatch();
 
-    const [isTodoEditable, setIsTodoEditable] = useState(false)
-    const [todoMsg, setTodoMsg] = useState(todo.todo)
+    const [editMode, setEditMode] = useState(false); // Added state to track edit mode
+    const [todoMsg, setTodoMsg] = useState(todo.Todo);
 
-    const editTodo = () => {
-        dispatch(updateTodo({ id: todo.id, todo: todoMsg }));
-        setIsTodoEditable(false)
-    }
-    const handletoggleCompleted = () => {
-        dispatch(toggleComplete(todo.id))
+    const editTodo = async (id, todo) => {
+        try {
+            await database.updateDocument(dbId, collectionId, id, {
+                Todo: todo
+            });
+        } catch (error) {
+            console.error('Error updating todo:', error);
+        }
+    };
+
+    const handleToggleCompleted = async (id) => {
+        try {
+            await database.updateDocument(dbId, collectionId, id, {
+                Completed: !todo.Completed
+            });
+        } catch (error) {
+            console.error('Error toggling completed status:', error);
+        }
+    };
+    const handledeltete = async (id) => {
+        await database.deleteDocument(dbId, collectionId, id)
     }
     return (
-        <div
-            className={`flex border border-black/10 rounded-lg px-3 py-1.5 gap-x-3 shadow-sm shadow-white/50 duration-300  text-black ${todo.completed ? "bg-[#c6e9a7]" : "bg-[#ccbed7]"
-                }`}
-        >
+        <div className={`flex border border-black/10 rounded-lg px-3 py-1.5 gap-x-3 shadow-sm shadow-white/50 duration-300 text-black ${todo.Completed ? 'bg-[#c6e9a7]' : 'bg-[#ccbed7]'}`}>
             <input
                 type="checkbox"
                 className="cursor-pointer"
-                checked={todo.completed}
-                onChange={() => { handletoggleCompleted(todo.id) }}
+                checked={todo.Completed}
+                onChange={() => handleToggleCompleted(todo.$id)}
             />
-            <input
-                type="text"
-                className={`border outline-none w-full bg-transparent rounded-lg ${isTodoEditable ? "border-black/10 px-2" : "border-transparent"
-                    } ${todo.completed ? "line-through" : ""}`}
-                value={todoMsg}
-                onChange={(e) => setTodoMsg(e.target.value)}
-                readOnly={!isTodoEditable}
-            />
+            {editMode ? (
+                <input
+                    type="text"
+                    className={`border items-center outline-none border-gray-400 bg-transparent w-full rounded-lg  `}
+                    value={todoMsg}
+                    onChange={(e) => setTodoMsg(e.target.value)}
+                />
+            ) : (
+                <div
+                    className={`flex items-center outline-none w-full bg-transparent rounded-lg ${todo.Completed ? 'line-through' : ''}`}
+                >
+                    {todo.Todo}
+                </div>
+            )}
             {/* Edit, Save Button */}
             <button
                 className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0 disabled:opacity-50"
                 onClick={() => {
-                    if (todo.completed) return;
-
-                    if (isTodoEditable) {
-                        editTodo();
-                    } else setIsTodoEditable((prev) => !prev);
+                    if (editMode) {
+                        editTodo(todo.$id, todoMsg); // Call editTodo function when saving changes
+                    }
+                    setEditMode((prev) => !prev); // Toggle edit mode
                 }}
-                disabled={todo.completed}
+                disabled={todo.Completed}
             >
-                {isTodoEditable ? "📁" : "✏️"}
+                {editMode ? "📁" : '✏️'}
             </button>
+
             {/* Delete Todo Button */}
             <button
                 className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0"
-                onClick={() => dispatch(deleteTodo(todo.id))}
+                onClick={() => { handledeltete(todo.$id) }}
             >
                 ❌
             </button>

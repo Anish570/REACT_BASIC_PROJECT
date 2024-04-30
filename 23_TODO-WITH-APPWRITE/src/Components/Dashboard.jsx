@@ -1,27 +1,48 @@
 import React, { useEffect, useState } from 'react';
-import { account } from '../Appwrite/Config';
+import { account, database } from '../Appwrite/Config';
 import { useNavigate } from 'react-router-dom';
 import TodoForm from './TodoForm';
 import TodoItem from './TodoItem';
-import { useSelector } from 'react-redux';
 import { MdOutlineLogout } from "react-icons/md";
+import { addTodo, collectionId, dbId } from '../Store/store';
+import { Query } from 'appwrite';
+import { client } from '../Appwrite/Config'
+
 
 const Dashboard = () => {
-    const todos = useSelector((store) => store.todo.todos)
+    useEffect(() => {
+        isLogin();
+
+    }, []);
+
+    const [todos, setTodos] = useState([]);
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const navigate = useNavigate();
 
-    useEffect(() => {
-        isLogin();
-    }, []);
+    const allTodos = async (email) => {
+        try {
+
+            const x = await database.listDocuments(dbId, collectionId, [
+                Query.equal('Email', email)
+            ]);
+
+            setTodos(x.documents);
+        } catch (error) {
+            console.error("Error fetching todos:", error);
+        }
+    };
 
     const isLogin = async () => {
         try {
-            let x = await account.get("current");
-            console.log("Current Session: ", x);
+            const x = await account.get("current");
             setEmail(x.email);
             setUserName(x.name);
+            allTodos(x.email);
+            client.subscribe(`databases.${dbId}.collections.${collectionId}.documents`, response => {
+                allTodos(x.email);
+            });
+
         } catch (error) {
             navigate('/login');
             console.error(error);
@@ -30,8 +51,8 @@ const Dashboard = () => {
 
     const handleSignOut = async () => {
         try {
-            const x = await account.deleteSession("current")
-            navigate('/login')
+            await account.deleteSession("current");
+            navigate('/login');
         } catch (error) {
             console.error(error)
         }
@@ -44,7 +65,6 @@ const Dashboard = () => {
                     <header className="bg-white shadow flex justify-between py-2 px-2 md:py-4 items-center sm:px-6 lg:px-8">
                         <div className="max-w-7xl ">
                             <h1 className="text-[20px] font-medium md:text-3xl md:font-bold leading-tight text-gray-900">Dashboard</h1>
-
                         </div>
                         <div className=" flex items-center justify-end gap-3 sm:gap-12 w-[70%] max-w-7xl ">
                             <div className='text-[20px] font-medium  md:text-3xl md:font-semibold'>Hi, {userName}</div>
@@ -61,24 +81,20 @@ const Dashboard = () => {
                         <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
                             <h1 className="text-2xl font-bold text-center mb-8 mt-2">Manage Your Todos</h1>
                             <div className="mb-4">
-                                <TodoForm />
+                                <TodoForm email={email} />
                             </div>
                             <div className="flex flex-wrap gap-y-3">
                                 {/*Loop and Add TodoItem here */}
-                                {todos.map((todo) => (
-                                    <div key={todo.id}
-                                        className='w-full'
-                                    >
-                                        <TodoItem todo={todo} />
+                                {todos.length > 0 && todos.map((todo) => (
+                                    <div key={todo.$id} className='w-full'>
+                                        <TodoItem todo={todo} email={email} />
                                     </div>
                                 ))}
                             </div>
                         </div>
                     </div>
 
-
                     <footer className="bg-white shadow">
-
                     </footer>
                 </div>
             ) : (
