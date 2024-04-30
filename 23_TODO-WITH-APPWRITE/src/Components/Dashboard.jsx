@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import TodoForm from './TodoForm';
 import TodoItem from './TodoItem';
 import { MdOutlineLogout } from "react-icons/md";
-import { Query } from 'appwrite';
+import { ID, Query } from 'appwrite';
 import { client } from '../Appwrite/Config'
 
 const dbId = import.meta.env.VITE_DATABASE_ID;
@@ -15,18 +15,6 @@ const Dashboard = () => {
         isLogin();
 
     }, []);
-    const addTodo = async (email, todo) => {
-        console.log("Email and  todo received: ", email, todo)
-        try {
-            // Assuming dbId and collectionId are properly defined
-            await database.createDocument(dbId, collectionId, "unique()", {
-                Email: email,
-                Todo: todo,
-            });
-        } catch (error) {
-            console.error("Error adding todo:", error);
-        }
-    };
 
 
     const [todos, setTodos] = useState([]);
@@ -60,6 +48,21 @@ const Dashboard = () => {
         } catch (error) {
             navigate('/login');
             console.error(error);
+        }
+    };
+
+    const addTodo = async (email, todo) => {
+
+        try {
+            // Assuming dbId and collectionId are properly defined
+            setTodos((prev) => [...prev, { $id: ID.unique(), Email: email, Todo: todo }])
+            const response = await database.createDocument(dbId, collectionId, "unique()", {
+                Email: email,
+                Todo: todo,
+            });
+            // setTodos((prev)=>[...prev,response])
+        } catch (error) {
+            console.error("Error adding todo:", error);
         }
     };
 
@@ -101,7 +104,7 @@ const Dashboard = () => {
                                 {/*Loop and Add TodoItem here */}
                                 {todos.length > 0 && todos.map((todo) => (
                                     <div key={todo.$id} className='w-full'>
-                                        <TodoItem todo={todo} email={email} />
+                                        <TodoItem todo={todo} email={email} setTodos={setTodos} />
                                     </div>
                                 ))}
                             </div>
