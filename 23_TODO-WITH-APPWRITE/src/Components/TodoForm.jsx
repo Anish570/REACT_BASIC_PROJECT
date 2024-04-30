@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { addTodo } from '../Store/store';
 
 
-function TodoForm({ email }) {
-    const dispatch = useDispatch()
+function TodoForm({ email, addTodo }) {
+
     const [todo, setTodo] = useState("")
 
     const add = (e) => {
         e.preventDefault()
         if (!todo) return
-        dispatch(addTodo(email, todo))
+        addTodo(email, todo)
+        console.log("add called with email and msg", email, todo)
         setTodo("")
     }
 

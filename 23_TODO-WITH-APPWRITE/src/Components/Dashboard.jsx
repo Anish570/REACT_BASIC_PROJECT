@@ -4,16 +4,30 @@ import { useNavigate } from 'react-router-dom';
 import TodoForm from './TodoForm';
 import TodoItem from './TodoItem';
 import { MdOutlineLogout } from "react-icons/md";
-import { addTodo, collectionId, dbId } from '../Store/store';
 import { Query } from 'appwrite';
 import { client } from '../Appwrite/Config'
 
+const dbId = import.meta.env.VITE_DATABASE_ID;
+const collectionId = import.meta.env.VITE_COLLECTION_ID;
 
 const Dashboard = () => {
     useEffect(() => {
         isLogin();
 
     }, []);
+    const addTodo = async (email, todo) => {
+        console.log("Email and  todo received: ", email, todo)
+        try {
+            // Assuming dbId and collectionId are properly defined
+            await database.createDocument(dbId, collectionId, "unique()", {
+                Email: email,
+                Todo: todo,
+            });
+        } catch (error) {
+            console.error("Error adding todo:", error);
+        }
+    };
+
 
     const [todos, setTodos] = useState([]);
     const [userName, setUserName] = useState("");
@@ -81,7 +95,7 @@ const Dashboard = () => {
                         <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
                             <h1 className="text-2xl font-bold text-center mb-8 mt-2">Manage Your Todos</h1>
                             <div className="mb-4">
-                                <TodoForm email={email} />
+                                <TodoForm email={email} addTodo={addTodo} />
                             </div>
                             <div className="flex flex-wrap gap-y-3">
                                 {/*Loop and Add TodoItem here */}

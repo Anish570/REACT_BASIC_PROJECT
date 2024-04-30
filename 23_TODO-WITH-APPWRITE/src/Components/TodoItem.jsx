@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteTodo, toggleComplete, updateTodo } from '../Store/store';
 import { database } from '../Appwrite/Config';
-import { collectionId, dbId } from '../Store/store';
-import { Query } from 'appwrite';
+
+const dbId = import.meta.env.VITE_DATABASE_ID;
+const collectionId = import.meta.env.VITE_COLLECTION_ID;
 
 function TodoItem({ todo }) {
-    const dispatch = useDispatch();
 
     const [editMode, setEditMode] = useState(false); // Added state to track edit mode
     const [todoMsg, setTodoMsg] = useState(todo.Todo);
