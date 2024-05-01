@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { account } from '../Appwrite/Config'
 import { useNavigate } from 'react-router-dom'
-
+import { FaEyeSlash } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 const Login = () => {
     const [email, setEmail] = useState("")
+    const [isShow, setIsShow] = useState("password")
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
-    const classes = "appearance-none border-[0px] bg-slate-600 block w-full px-3 py-2  rounded-md shadow-sm outline-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:border-[1px] sm:text-sm"
+    const classes = "appearance-none border-[1px] border-transparent bg-slate-600 block w-full px-3 py-2  rounded-md shadow-sm outline-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:border-[1px] sm:text-sm"
     const handleSubmit = (e) => {
         e.preventDefault()
         if (email === "" && password === "") {
@@ -27,6 +29,9 @@ const Login = () => {
     }
     const handlesignup = () => {
         navigate('/register')
+    }
+    const handleIsShow = () => {
+        setIsShow((prev) => prev === "password" ? "text" : "password")
     }
     return (
         <div className="min-h-screen  bg-gray-800 text-white  flex flex-col justify-center py-12  px-[10px]  sm:px-6  lg:px-8">
@@ -58,17 +63,26 @@ const Login = () => {
                             <label htmlFor="password" className="block text-sm font-medium ">
                                 Password
                             </label>
-                            <div className="mt-1">
+                            <div className="mt-1 flex items-center relative">
                                 <input
                                     id="password"
                                     name="password"
-                                    type="password"
+                                    type={isShow}
                                     autoComplete="current-password"
                                     required
                                     placeholder='********'
                                     onChange={(e) => { setPassword(e.target.value) }}
                                     className={`${classes}`}
+
                                 />
+                                {
+                                    isShow === "password" ? (
+                                        <FaEye onClick={handleIsShow} className='text-[15px]  cursor-pointer z-[1] absolute right-5 ' />
+                                    ) : (
+                                        <FaEyeSlash onClick={handleIsShow} className='text-[15px]   cursor-pointer z-[1] absolute right-5 ' />
+
+                                    )
+                                }
                             </div>
                         </div>
                         <div className="flex items-center flex-wrap gap-[5px] sm:gap-0 justify-between">

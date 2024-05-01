@@ -79,7 +79,7 @@ const Dashboard = () => {
             console.error(error)
         }
     };
-
+    const test = 0;
     return (
         <div>
             {userName && email ? (
@@ -96,7 +96,7 @@ const Dashboard = () => {
                                 <Menu >
                                     <MenuButton >
                                         <CgProfile className="text-3xl " />
-                                        {/* <IoChevronDownCircleOutline /> */}
+
                                     </MenuButton>
                                     <MenuList bg="gray.500" marginTop="5px" >
                                         <MenuItem bg="gray.500" _hover={{ bg: "blue.900" }} onClick={() => { handleSignOut() }} >Logout</MenuItem>
@@ -116,25 +116,28 @@ const Dashboard = () => {
                                 <TodoForm email={email} addTodo={addTodo} />
                             </div>
                             <div className="flex flex-wrap gap-y-3">
-                                {/*Loop and Add TodoItem here */}
+
                                 {todos.length > 0 && todos.map((todo) => (
                                     <div key={todo.$id} className='w-full'>
                                         <TodoItem todo={todo} email={email} setTodos={setTodos} />
                                     </div>
                                 ))}
                             </div>
-                        </div>
-                    </div>
+                        </div >
+                    </div >
 
                     <footer className="bg-white shadow">
                     </footer>
-                </div>
+                </div >
             ) : (
-                <div>
+                <div className='bg-gray-600 text-white text-[25px] h-screen flex flex-col gap-3  items-center justify-center font-medium'>
+                    <img src="/loading.gif" width={50} alt="" />
                     Loading...
                 </div>
-            )}
-        </div>
+            )
+            }
+
+        </div >
     );
 };
 

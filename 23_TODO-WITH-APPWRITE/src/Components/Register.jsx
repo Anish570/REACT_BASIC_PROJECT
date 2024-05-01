@@ -1,20 +1,17 @@
 import React, { useState } from 'react'
 import { account } from '../Appwrite/Config';
 import { useNavigate } from 'react-router-dom';
+import { FaEyeSlash } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 const Register = () => {
+    const [isShow, setIsShow] = useState("password")
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
-    const classes = "appearance-none border-[0px] bg-slate-600 block w-full px-3 py-2  rounded-md shadow-sm outline-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:border-[1px] sm:text-sm"
+    const classes = "appearance-none border-[1px] border-transparent bg-slate-600 block w-full px-3 py-2  rounded-md shadow-sm outline-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:border-[1px] sm:text-sm"
     const handleSubmmit = (e) => {
         e.preventDefault()
-        // if (name === "" || email === "" || password === "") {
-        //     alert("Form is not filled properly")
-        // }
-        // else {
-        //     register()
-        // }
         register()
     }
 
@@ -30,6 +27,10 @@ const Register = () => {
     }
     const handlelogin = () => {
         navigate('/login')
+    }
+
+    const handleIsShow = () => {
+        setIsShow((prev) => prev === "password" ? "text" : "password")
     }
     return (
         <div className="min-h-screen bg-gray-800 text-white flex flex-col justify-center  px-[10px] md-px-[0px] py-12 sm:px-6 lg:px-8">
@@ -48,13 +49,14 @@ const Register = () => {
                                 <input
                                     id="name"
                                     name="name"
-                                    type="text"
+                                    type='text'
                                     autoComplete="name"
                                     required
                                     placeholder='Full Name'
                                     onChange={(e) => { setName(e.target.value) }}
                                     className={classes}
                                 />
+
                             </div>
                         </div>
                         <div>
@@ -78,17 +80,25 @@ const Register = () => {
                             <label htmlFor="password" className="block text-sm font-medium ">
                                 Password
                             </label>
-                            <div className="mt-1">
+                            <div className="mt-1 flex items-center relative ">
                                 <input
                                     id="password"
                                     name="password"
-                                    type="password"
+                                    type={isShow}
                                     autoComplete="new-password"
                                     required
                                     onChange={(e) => { setPassword(e.target.value) }}
                                     placeholder='password'
                                     className={classes}
                                 />
+                                {
+                                    isShow === "password" ? (
+                                        <FaEye onClick={handleIsShow} className='text-[15px]  cursor-pointer z-[1] absolute right-5 ' />
+                                    ) : (
+                                        <FaEyeSlash onClick={handleIsShow} className='text-[15px]   cursor-pointer z-[1] absolute right-5 ' />
+
+                                    )
+                                }
                             </div>
                         </div>
                         <div className='flex flex-col gap-[10px]'>
