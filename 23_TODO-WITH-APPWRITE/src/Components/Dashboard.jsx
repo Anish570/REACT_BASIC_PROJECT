@@ -92,15 +92,15 @@ const Dashboard = () => {
                             <div className='text-[24px] font-medium'>
                                 Hi, {userName && userName.charAt(0).toUpperCase() + userName.slice(1)}
                             </div>
-                            <div>
+                            <div className='flex items-center'>
                                 <Menu >
                                     <MenuButton >
                                         <CgProfile className="text-3xl " />
 
                                     </MenuButton>
                                     <MenuList bg="gray.500" marginTop="5px" >
+                                        <MenuItem bg="gray.500" _hover={{ bg: "blue.900" }} onClick={() => { navigate('/') }}>Home</MenuItem>
                                         <MenuItem bg="gray.500" _hover={{ bg: "blue.900" }} onClick={() => { handleSignOut() }} >Logout</MenuItem>
-                                        <MenuItem bg="gray.500" _hover={{ bg: "blue.900" }}>Support</MenuItem>
 
                                     </MenuList>
                                 </Menu>
