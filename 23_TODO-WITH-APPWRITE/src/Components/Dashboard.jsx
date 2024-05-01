@@ -88,10 +88,11 @@ const Dashboard = () => {
                         <div className='items-center justify-between gap-6 hidden md:block'>
                             <h1 className="text-[24px]  font-medium">Dashboard</h1>
                         </div>
-                        <div className='w-full md:w-[15%] flex items-center justify-between'>
+                        <div className='w-full md:w-[30%] flex items-center justify-between md:justify-end md:gap-10'>
                             <div className='text-[24px] font-medium'>
-                                Hi, {userName && userName.charAt(0).toUpperCase() + userName.slice(1)}
+                                Hi, {userName && userName.split(' ')[0].charAt(0).toUpperCase() + userName.split(' ')[0].slice(1)}
                             </div>
+
                             <div className='flex items-center'>
                                 <Menu >
                                     <MenuButton >
