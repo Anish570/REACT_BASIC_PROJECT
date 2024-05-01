@@ -11,6 +11,9 @@ function TodoItem({ todo, setTodos }) {
     const [todoMsg, setTodoMsg] = useState(todo.Todo);
 
     const editTodo = async (id, todo) => {
+        setTodos((prev) => prev.map((prevtodo) => (
+            prevtodo.$id === id ? { ...prevtodo, Todo: todo } : prevtodo
+        )))
         try {
             await database.updateDocument(dbId, collectionId, id, {
                 Todo: todo

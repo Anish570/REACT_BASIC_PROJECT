@@ -9,7 +9,6 @@ function TodoForm({ email, addTodo }) {
         e.preventDefault()
         if (!todo) return
         addTodo(email, todo)
-        console.log("add called with email and msg", email, todo)
         setTodo("")
     }
 
