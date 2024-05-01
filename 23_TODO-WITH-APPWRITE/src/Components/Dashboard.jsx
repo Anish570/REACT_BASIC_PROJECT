@@ -1,3 +1,8 @@
+import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
+import { IoChevronDownCircleOutline } from 'react-icons/io5'
+import { GiHamburgerMenu } from "react-icons/gi";
+import { CgProfile } from "react-icons/cg";
+
 import React, { useEffect, useState } from 'react';
 import { account, database } from '../Appwrite/Config';
 import { useNavigate } from 'react-router-dom';
@@ -78,21 +83,31 @@ const Dashboard = () => {
     return (
         <div>
             {userName && email ? (
-                <div className="min-h-screen bg-gray-100 flex flex-col ">
-                    <header className="bg-white shadow flex justify-between py-2 px-2 md:py-4 items-center sm:px-6 lg:px-8">
-                        <div className="max-w-7xl ">
-                            <h1 className="text-[20px] font-medium md:text-3xl md:font-bold leading-tight text-gray-900">Dashboard</h1>
+                <div className="min-h-screen bg-gray-600 flex flex-col ">
+                    <nav className="flex text-white w-[100%] justify-between py-[5px] px-[10px] md:px-[6%] ">
+                        <div className='items-center justify-between gap-6 hidden md:block'>
+                            <h1 className="text-[24px]  font-medium">Dashboard</h1>
                         </div>
-                        <div className=" flex items-center justify-end gap-3 sm:gap-12 w-[70%] max-w-7xl ">
-                            <div className='text-[20px] font-medium  md:text-3xl md:font-semibold'>Hi, {userName}</div>
-                            <button
-                                onClick={handleSignOut}
-                                className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                            >
-                                <MdOutlineLogout />
-                            </button>
+                        <div className='w-full md:w-[15%] flex items-center justify-between'>
+                            <div className='text-[24px] font-medium'>
+                                Hi, {userName && userName.charAt(0).toUpperCase() + userName.slice(1)}
+                            </div>
+                            <div>
+                                <Menu >
+                                    <MenuButton >
+                                        <CgProfile className="text-3xl " />
+                                        {/* <IoChevronDownCircleOutline /> */}
+                                    </MenuButton>
+                                    <MenuList bg="gray.500" marginTop="5px" >
+                                        <MenuItem bg="gray.500" _hover={{ bg: "blue.900" }} onClick={() => { handleSignOut() }} >Logout</MenuItem>
+                                        <MenuItem bg="gray.500" _hover={{ bg: "blue.900" }}>Support</MenuItem>
+
+                                    </MenuList>
+                                </Menu>
+                            </div>
                         </div>
-                    </header>
+
+                    </nav>
 
                     <div className="bg-[#172842] min-h-screen py-8">
                         <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">

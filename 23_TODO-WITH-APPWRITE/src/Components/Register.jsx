@@ -6,6 +6,7 @@ const Register = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
+    const classes = "appearance-none border-[0px] bg-slate-600 block w-full px-3 py-2  rounded-md shadow-sm outline-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:border-[1px] sm:text-sm"
     const handleSubmmit = (e) => {
         e.preventDefault()
         // if (name === "" || email === "" || password === "") {
@@ -27,17 +28,20 @@ const Register = () => {
             console.error(error)
         }
     }
+    const handlelogin = () => {
+        navigate('/login')
+    }
     return (
-        <div className="min-h-screen bg-gray-100 flex flex-col justify-center  px-[10px] md-px-[0px] py-12 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gray-800 text-white flex flex-col justify-center  px-[10px] md-px-[0px] py-12 sm:px-6 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Register your Account</h2>
+                <h2 className="mt-6 text-center text-3xl font-extrabold ">Register your Account</h2>
             </div>
 
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                <div className="bg-gray-700 text-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
                     <form className="space-y-6" >
                         <div>
-                            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="name" className="block text-sm font-medium ">
                                 Name
                             </label>
                             <div className="mt-1">
@@ -47,13 +51,14 @@ const Register = () => {
                                     type="text"
                                     autoComplete="name"
                                     required
+                                    placeholder='Full Name'
                                     onChange={(e) => { setName(e.target.value) }}
-                                    className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    className={classes}
                                 />
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="email" className="block text-sm font-medium ">
                                 Email address
                             </label>
                             <div className="mt-1">
@@ -62,14 +67,15 @@ const Register = () => {
                                     name="email"
                                     type="email"
                                     autoComplete="email"
+                                    placeholder='sample@gmail.com'
                                     required
                                     onChange={(e) => { setEmail(e.target.value) }}
-                                    className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    className={classes}
                                 />
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="password" className="block text-sm font-medium ">
                                 Password
                             </label>
                             <div className="mt-1">
@@ -80,11 +86,12 @@ const Register = () => {
                                     autoComplete="new-password"
                                     required
                                     onChange={(e) => { setPassword(e.target.value) }}
-                                    className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    placeholder='password'
+                                    className={classes}
                                 />
                             </div>
                         </div>
-                        <div>
+                        <div className='flex flex-col gap-[10px]'>
                             <button
                                 onClick={handleSubmmit}
                                 type="submit"
@@ -92,6 +99,9 @@ const Register = () => {
                             >
                                 Register
                             </button>
+                            <div className='font-[425px] text-[13px] '>
+                                Already have an account ? <span className='text-indigo-600 cursor-pointer font-medium' onClick={handlelogin}>Log in</span>
+                            </div>
                         </div>
                     </form>
                 </div>
