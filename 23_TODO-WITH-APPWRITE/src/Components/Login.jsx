@@ -21,12 +21,42 @@ const Login = () => {
     const login = async () => {
         try {
             const x = await account.createEmailPasswordSession(email, password)
-            console.log(x)
+            console.log("What is this", x)
             navigate('/dashboard')
         } catch (error) {
+            console.log("Error is :", error)
             navigate('/dashboard')
         }
     }
+    // const login = async () => {
+    //     try {
+    //         // Check if a session already exists
+    //         const { session } = await account.get();
+
+    //         // If a session exists, navigate to the dashboard
+    //         if (session) {
+    //             navigate('/dashboard');
+    //             return;
+    //         }
+
+    //         // If no session exists, create a new one
+    //         const x = await account.createEmailPasswordSession(email, password);
+    //         console.log("What is this", x);
+    //         navigate('/dashboard');
+    //     } catch (error) {
+    //         // Handle the specific error when session creation is prohibited
+    //         if (error.code === 1054) {
+    //             console.log("A session is already active. Navigate to dashboard.");
+    //             navigate('/dashboard');
+    //             return;
+    //         }
+
+    //         console.error("Error:", error);
+    //         alert("Either Email or Password is wrong");
+    //         // navigate('/dashboard');
+    //     }
+    // }
+
     const handlesignup = () => {
         navigate('/register')
     }

@@ -16,6 +16,10 @@ const dbId = import.meta.env.VITE_DATABASE_ID;
 const collectionId = import.meta.env.VITE_COLLECTION_ID;
 
 const Dashboard = () => {
+    window.addEventListener('beforeunload', async function (event) {
+        handleSignOut();
+    });
+
     useEffect(() => {
         isLogin();
 
@@ -79,7 +83,7 @@ const Dashboard = () => {
             console.error(error)
         }
     };
-    const test = 0;
+
     return (
         <div>
             {userName && email ? (
