@@ -1,0 +1,46 @@
+
+.boxes img{
+    padding: 25px 25px;
+}
+
+.boxes {
+    border-radius: 12px;
+    display: flex;
+    margin: 2px;
+    cursor: pointer;
+    background-color: #1f3540;
+    border: 1px solid #0f1b21;
+    width: 130px;
+    height: 130px;
+}
+h1 img{
+    padding: 15px 20px;
+    width: 80px;
+    /* margin-top: 13px; */
+}
+
+
+@media only screen and (max-width: 767px) {
+    /* CSS rules specific to mobile devices */
+    .h1 img{
+        padding: 20px 20px;
+        width: 80px;
+       margin-top: -6px;
+    }
+   .boxes{
+    width: 100px;
+    height: 100px;
+   } 
+    
+    /* .boxes img{
+    width:100%;
+    padding: 20px 20px;
+   } */
+  }
+  
+@media (max-width: 640px) { 
+   
+  
+   
+}
+
