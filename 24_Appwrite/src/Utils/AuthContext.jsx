@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { account } from '../appwriteConfig'
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { ID } from "appwrite";
 
 const AuthContext = createContext()
 
@@ -12,13 +13,21 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState(null)
     const navigate = useNavigate()
-    const registerUser = (userInfo) => { }
+    const registerUser = async (userInfo) => {
+        try {
+            const response = await account.create(ID.unique(), userInfo.email, userInfo.password, userInfo.name)
+            console.log(response)
+            loginUser(userInfo)
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
     const loginUser = async (userInfo) => {
         setLoading(true)
         try {
             const response = await account.createEmailPasswordSession(userInfo.email, userInfo.password)
             const accountDetails = await account.get()
-            console.log("Account Created: ", accountDetails)
             setUser(accountDetails)
             navigate('/')
         } catch (error) {
@@ -35,7 +44,8 @@ export const AuthProvider = ({ children }) => {
             const accountDetails = await account.get()
             setUser(accountDetails)
         } catch (error) {
-            console.log(error)
+            setUser(null)
+            console.log("No user logged in ")
         }
         setLoading(false)
     }
@@ -54,6 +64,7 @@ export const AuthProvider = ({ children }) => {
         </ AuthContext.Provider>
     )
 }
+
 export const useAuth = () => {
     return useContext(AuthContext)
 }
