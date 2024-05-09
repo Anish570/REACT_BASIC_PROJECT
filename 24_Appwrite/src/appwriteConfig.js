@@ -7,6 +7,6 @@ const client = new Client();
 
 client.setEndpoint(appwriteURL).setProject(projectID);
 
-const account = new Account(client);
+export const account = new Account(client);
 
 export default client;
