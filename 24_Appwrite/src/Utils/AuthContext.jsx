@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
         setLoading(false)
     }, [])
     const [loading, setLoading] = useState(true)
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState()
 
     const registerUser = (userInfo) => { }
     const loginUser = (userInfo) => { }
