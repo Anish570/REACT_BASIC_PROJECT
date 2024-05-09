@@ -7,6 +7,7 @@ import Profile from './pages/Profile'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import PrivateRoutes from './Utils/PrivateRoutes'
+import { AuthProvider } from './Utils/AuthContext'
 
 
 function App() {
@@ -14,15 +15,17 @@ function App() {
   // console.log("Appwrite url: ", appwriteURL);
   return (
     <Router>
-      <Header />
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route element={<PrivateRoutes />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-        </Route>
-      </Routes>
+      <AuthProvider>
+        <Header />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </Router>
   )
 }
