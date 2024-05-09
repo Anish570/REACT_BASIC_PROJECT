@@ -3,11 +3,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../Utils/AuthContext'
 
 const Header = () => {
-    const { user } = useAuth()
+    const { user, logoutUser } = useAuth()
     const navigate = useNavigate()
 
     const logoutClick = () => {
-        navigate('/login')
+        logoutUser()
     }
 
     return (

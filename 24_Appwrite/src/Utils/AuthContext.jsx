@@ -11,23 +11,25 @@ export const AuthProvider = ({ children }) => {
     }, [])
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState(null)
-
+    const navigate = useNavigate()
     const registerUser = (userInfo) => { }
     const loginUser = async (userInfo) => {
-        // const navigate = useNavigate()
         setLoading(true)
         try {
             const response = await account.createEmailPasswordSession(userInfo.email, userInfo.password)
             const accountDetails = await account.get()
             console.log("Account Created: ", accountDetails)
             setUser(accountDetails)
-
+            navigate('/')
         } catch (error) {
             console.log(error)
         }
         setLoading(false)
     }
-    const logoutUser = () => { }
+    const logoutUser = async () => {
+        await account.deleteSessions();
+        setUser(null)
+    }
     const checkUserStatus = async () => {
         try {
             const accountDetails = await account.get()
