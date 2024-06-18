@@ -2,9 +2,9 @@
 const Headphone = `https://i.pngimg.me/thumb/f/720/comhiclipartidnpn.jpg`
 const Card = () => {
     return (
-        <div className='border p-4 max-w-[500px] w-[80%] rounded-md shadow-2xl'>
-            <div className='mb-4 '>
-                <img src={Headphone} alt="product image" className="w-full h-full object-cover" />
+        <div className='border p-4 max-w-[500px] w-[80%] h-[80%] rounded-md shadow-2xl'>
+            <div className='mb-4 p-2 h-[60%]'>
+                <img src={Headphone} alt="product image" className="w-full h-full object-contain" />
             </div>
             <div>
                 <span className="font-semibold mb-2">Title of the Product</span><br />
@@ -15,7 +15,7 @@ const Card = () => {
                     nulla consequuntur, voluptatem deleniti adipisci similique quos. <br />
                     Doloremque nobis illum dolor. Quia nisi neque a?
                 </p>
-                <p>
+                <p className="mt-2 font-semibold">
                     some other things
                 </p>
             </div>
