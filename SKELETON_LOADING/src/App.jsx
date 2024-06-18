@@ -1,8 +1,11 @@
 import React from 'react'
+import Card from './components/Card'
 
 const App = () => {
   return (
-    <div className='text-red-500 text-center text-4xl'>hello world</div>
+    <div className='flex items-center justify-center h-screen w-full'>
+      <Card />
+    </div>
   )
 }
 
