@@ -1,8 +1,9 @@
 import express from "express";
 import { config } from "dotenv";
+import cors from "cors";
 config();
 const app = express();
-
+app.use(cors());
 app.get("/", (req, res) => {
   res.json({
     message: "all good",
@@ -72,7 +73,6 @@ app.get("/api/products", (req, res) => {
       image: "https://via.placeholder.com/150/800000/FFFFFF?text=Product+10",
     },
   ];
-  console.log(`params received: ${req.query.search}`);
   if (req.query.search) {
     const filteredProducts = products.filter((product) =>
       product.name.toLowerCase().includes(req.query.search.toLowerCase())
@@ -80,9 +80,7 @@ app.get("/api/products", (req, res) => {
     res.send(filteredProducts);
     return;
   }
-  setTimeout(() => {
-    res.json(products);
-  }, 3000);
+  res.json(products);
 });
 
 const port = process.env.PORT || 3000;
