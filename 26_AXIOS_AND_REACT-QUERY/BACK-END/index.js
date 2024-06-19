@@ -13,7 +13,7 @@ app.get("/api/products", (req, res) => {
   const products = [
     {
       id: 1,
-      name: "Product 1",
+      name: "Wooden table",
       price: "400",
       image: "https://via.placeholder.com/150/0000FF/808080?text=Product+1",
     },
@@ -67,12 +67,19 @@ app.get("/api/products", (req, res) => {
     },
     {
       id: 10,
-      name: "Product 10",
+      name: "Tenth product",
       price: "1300",
       image: "https://via.placeholder.com/150/800000/FFFFFF?text=Product+10",
     },
   ];
-
+  console.log(`params received: ${req.query.search}`);
+  if (req.query.search) {
+    const filteredProducts = products.filter((product) =>
+      product.name.toLowerCase().includes(req.query.search.toLowerCase())
+    );
+    res.send(filteredProducts);
+    return;
+  }
   setTimeout(() => {
     res.json(products);
   }, 3000);
